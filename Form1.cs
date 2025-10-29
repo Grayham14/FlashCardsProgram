@@ -34,6 +34,34 @@ namespace FlashCards
 
             textBox4.Text = "Welcome to Flashcards! This deck is currently Empty, please add a card to get started";
         }
+        private void LoadDeck(string deckName)
+        {
+            try
+            {
+                // Match the same naming rule as SaveDeck
+                string safeDeckName = deckName.Replace(" ", "");
+                string filePath = Path.Combine(Application.StartupPath, $"{safeDeckName}.json");
+
+                if (File.Exists(filePath))
+                {
+                    string json = File.ReadAllText(filePath);
+                    currentDeck = JsonSerializer.Deserialize<List<Flashcard>>(json) ?? new List<Flashcard>();
+                    MessageBox.Show($"{deckName} loaded successfully!");
+                }
+                else
+                {
+                    currentDeck = new List<Flashcard>();
+                    MessageBox.Show($"No save found for {deckName}. A new deck has been created.");
+                }
+
+                //UpdateUI();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading deck: {ex.Message}");
+            }
+        }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) //deck select
         {
@@ -44,9 +72,11 @@ namespace FlashCards
                 {
                     case "Deck 1":
                         currentDeck = Deck1;
+                        LoadDeck("Deck1");
                         LogBox.Text = "Deck 1 selected";
                         if (Deck1.Count == 0)
                         {
+                            ;
                             textBox4.Text = "Welcome to Flashcards! This deck is currently Empty, please add a card to get started";
                         }
 
@@ -101,7 +131,7 @@ namespace FlashCards
             currentIndexBox.Text = currentCardIndex.ToString();
             showingFront = true;
 
-            if (currentCardIndex >= Deck1.Count)
+            if (currentCardIndex >= currentDeck.Count)
             {
                 currentCardIndex = 0;
             }
@@ -110,7 +140,7 @@ namespace FlashCards
                 textBox4.Text = "Welcome to Flashcards! This deck is currently Empty, please add a card to get started";
 
             }
-            else if (Deck1.Count > 0)
+            else if (currentDeck.Count > 0)
             {
                 switch (currentDeck[currentCardIndex].CurrentStatus)
                 {
@@ -135,12 +165,12 @@ namespace FlashCards
 
             showingFront = true;
 
-            if (Deck1.Count == 0)
+            if (currentDeck.Count == 0)
             {
                 textBox4.Text = "Welcome to Flashcards! This deck is currently Empty, please add a card to get started";
 
             }
-            else if (Deck1.Count > 0)
+            else if (currentDeck.Count > 0)
             {
                 currentCardIndex--;
                 if (currentCardIndex < 0)
@@ -206,17 +236,29 @@ namespace FlashCards
 
         }
 
-        private void SaveFlashcards(string deckName)
+        private void SaveyDeck(string deckName)
         {
-            string filePath = $"{deckName}.json";
-            string json = JsonSerializer.Serialize(currentDeck, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, json);
+            try
+            {
+                // Make the file name safe and consistent
+                string safeDeckName = deckName.Replace(" ", "");
+                string filePath = Path.Combine(Application.StartupPath, $"{safeDeckName}.json");
+
+                string json = JsonSerializer.Serialize(currentDeck, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, json);
+
+                MessageBox.Show($"{deckName} saved successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving deck: {ex.Message}");
+            }
         }
 
         private void SaveDeck_Click(object sender, EventArgs e)
         {
             string deckName = deckSelect.SelectedItem.ToString(); // like "Deck1"
-            SaveFlashcards(deckName);
+            SaveyDeck(deckName);
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)

@@ -46,6 +46,7 @@
             name = new TextBox();
             SaveDeck = new Button();
             comboBox1 = new ComboBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -158,11 +159,10 @@
             // deleteCardIndex
             // 
             deleteCardIndex.BackColor = SystemColors.Window;
-            deleteCardIndex.Location = new Point(791, 482);
+            deleteCardIndex.Location = new Point(951, 482);
             deleteCardIndex.Name = "deleteCardIndex";
-            deleteCardIndex.Size = new Size(197, 31);
+            deleteCardIndex.Size = new Size(37, 31);
             deleteCardIndex.TabIndex = 10;
-            deleteCardIndex.Text = "Delete Card Index:";
             // 
             // currentIndexBox
             // 
@@ -239,12 +239,23 @@
             comboBox1.TabIndex = 18;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.Window;
+            label1.Location = new Point(789, 482);
+            label1.Name = "label1";
+            label1.Size = new Size(156, 25);
+            label1.TabIndex = 19;
+            label1.Text = "Delete Card Index:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(1041, 568);
+            Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(SaveDeck);
             Controls.Add(name);
@@ -290,5 +301,6 @@
         private TextBox name;
         private Button SaveDeck;
         private ComboBox comboBox1;
+        private Label label1;
     }
 }
