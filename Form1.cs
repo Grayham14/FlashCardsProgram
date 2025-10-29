@@ -1,6 +1,7 @@
-using System.Text.Json;
 using System;
 using System.IO;
+using System.Text.Json;
+using System.Windows.Forms;
 
 namespace FlashCards
 {
@@ -109,8 +110,20 @@ namespace FlashCards
                 textBox4.Text = "Welcome to Flashcards! This deck is currently Empty, please add a card to get started";
 
             }
-            else
+            else if (Deck1.Count > 0)
             {
+                switch (currentDeck[currentCardIndex].CurrentStatus)
+                {
+                    case Flashcard.currentStatus.Correct:
+                        comboBox1.SelectedIndex = 0; // Correct
+                        break;
+                    case Flashcard.currentStatus.False:
+                        comboBox1.SelectedIndex = 1; // Incorrect;
+                        break;
+                    case Flashcard.currentStatus.Unsure:
+                        comboBox1.SelectedIndex = 2; // Unsure
+                        break;
+                }
                 textBox4.Text = currentDeck[currentCardIndex].Frontside;
             }
 
@@ -127,7 +140,7 @@ namespace FlashCards
                 textBox4.Text = "Welcome to Flashcards! This deck is currently Empty, please add a card to get started";
 
             }
-            else
+            else if (Deck1.Count > 0)
             {
                 currentCardIndex--;
                 if (currentCardIndex < 0)
@@ -135,8 +148,20 @@ namespace FlashCards
                     currentCardIndex = currentDeck.Count - 1;
 
                 }
+                switch (currentDeck[currentCardIndex].CurrentStatus)
+                {
+                    case Flashcard.currentStatus.Correct:
+                        comboBox1.SelectedIndex = 0; // Correct
+                        break;
+                    case Flashcard.currentStatus.False:
+                        comboBox1.SelectedIndex = 1; // Incorrect;
+                        break;
+                    case Flashcard.currentStatus.Unsure:
+                        comboBox1.SelectedIndex = 2; // Unsure
+                        break;
+                }
                 currentIndexBox.Text = currentCardIndex.ToString();
-                textBox4.Text = currentDeck[currentCardIndex].Frontside;
+                textBox4.Text = currentDeck[currentCardIndex].Frontside; //bug occurs here for out of index?
 
             }
 
@@ -192,6 +217,26 @@ namespace FlashCards
         {
             string deckName = deckSelect.SelectedItem.ToString(); // like "Deck1"
             SaveFlashcards(deckName);
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            string currentSelectedOption = comboBox1.SelectedItem.ToString();
+            if (currentDeck.Count > 0)
+            {
+                switch (currentSelectedOption)
+                {
+                    case "Correct":
+                        currentDeck[currentCardIndex].CurrentStatus = Flashcard.currentStatus.Correct;
+                        break;
+                    case "Incorrect":
+                        currentDeck[currentCardIndex].CurrentStatus = Flashcard.currentStatus.False;
+                        break;
+                    case "Unsure":
+                        currentDeck[currentCardIndex].CurrentStatus = Flashcard.currentStatus.Unsure;
+                        break;
+                }
+            }
         }
     }
 }

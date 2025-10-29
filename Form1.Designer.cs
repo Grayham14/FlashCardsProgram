@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
             button2 = new Button();
             flipCard = new Button();
@@ -44,14 +43,14 @@
             textBox4 = new TextBox();
             LogBox = new TextBox();
             debugsetup = new Button();
-            checkedListBox1 = new CheckedListBox();
             name = new TextBox();
             SaveDeck = new Button();
+            comboBox1 = new ComboBox();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.BackColor = Color.Fuchsia;
+            button1.BackColor = SystemColors.Window;
             button1.Location = new Point(3, 442);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
@@ -62,7 +61,7 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.Fuchsia;
+            button2.BackColor = SystemColors.Window;
             button2.Location = new Point(121, 442);
             button2.Name = "button2";
             button2.Size = new Size(112, 34);
@@ -73,7 +72,7 @@
             // 
             // flipCard
             // 
-            flipCard.BackColor = Color.Fuchsia;
+            flipCard.BackColor = SystemColors.Window;
             flipCard.Location = new Point(58, 402);
             flipCard.Name = "flipCard";
             flipCard.Size = new Size(112, 34);
@@ -84,7 +83,7 @@
             // 
             // deckSelect
             // 
-            deckSelect.BackColor = Color.FromArgb(255, 128, 0);
+            deckSelect.BackColor = SystemColors.Window;
             deckSelect.FormattingEnabled = true;
             deckSelect.Items.AddRange(new object[] { "Deck 1", "Deck 2", "Deck 3" });
             deckSelect.Location = new Point(658, 86);
@@ -95,7 +94,7 @@
             // 
             // textBox1
             // 
-            textBox1.BackColor = Color.FromArgb(255, 128, 128);
+            textBox1.BackColor = SystemColors.Window;
             textBox1.Location = new Point(658, 49);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
@@ -105,7 +104,7 @@
             // 
             // button4
             // 
-            button4.BackColor = Color.FromArgb(0, 192, 0);
+            button4.BackColor = SystemColors.Window;
             button4.Location = new Point(658, 151);
             button4.Name = "button4";
             button4.Size = new Size(340, 34);
@@ -116,7 +115,7 @@
             // 
             // InputFront
             // 
-            InputFront.BackColor = Color.Lime;
+            InputFront.BackColor = SystemColors.Window;
             InputFront.Location = new Point(658, 191);
             InputFront.Multiline = true;
             InputFront.Name = "InputFront";
@@ -126,7 +125,7 @@
             // 
             // InputBack
             // 
-            InputBack.BackColor = Color.Lime;
+            InputBack.BackColor = SystemColors.Window;
             InputBack.Location = new Point(658, 293);
             InputBack.Multiline = true;
             InputBack.Name = "InputBack";
@@ -136,7 +135,7 @@
             // 
             // DeleteButton
             // 
-            DeleteButton.BackColor = Color.Red;
+            DeleteButton.BackColor = SystemColors.Window;
             DeleteButton.Location = new Point(791, 402);
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(197, 34);
@@ -147,7 +146,7 @@
             // 
             // button5
             // 
-            button5.BackColor = Color.Red;
+            button5.BackColor = SystemColors.Window;
             button5.Location = new Point(791, 442);
             button5.Name = "button5";
             button5.Size = new Size(197, 34);
@@ -158,7 +157,7 @@
             // 
             // deleteCardIndex
             // 
-            deleteCardIndex.BackColor = Color.Red;
+            deleteCardIndex.BackColor = SystemColors.Window;
             deleteCardIndex.Location = new Point(791, 482);
             deleteCardIndex.Name = "deleteCardIndex";
             deleteCardIndex.Size = new Size(197, 31);
@@ -167,7 +166,7 @@
             // 
             // currentIndexBox
             // 
-            currentIndexBox.BackColor = Color.FromArgb(0, 192, 192);
+            currentIndexBox.BackColor = SystemColors.Window;
             currentIndexBox.Location = new Point(58, 482);
             currentIndexBox.Name = "currentIndexBox";
             currentIndexBox.ReadOnly = true;
@@ -177,7 +176,7 @@
             // 
             // textBox4
             // 
-            textBox4.BackColor = Color.FromArgb(128, 128, 255);
+            textBox4.BackColor = SystemColors.Window;
             textBox4.Location = new Point(22, 153);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
@@ -185,10 +184,11 @@
             textBox4.Size = new Size(565, 238);
             textBox4.TabIndex = 12;
             textBox4.Text = "Card is great";
+            textBox4.TextAlign = HorizontalAlignment.Center;
             // 
             // LogBox
             // 
-            LogBox.BackColor = Color.Yellow;
+            LogBox.BackColor = SystemColors.Window;
             LogBox.Location = new Point(449, 525);
             LogBox.Name = "LogBox";
             LogBox.ReadOnly = true;
@@ -198,26 +198,18 @@
             // 
             // debugsetup
             // 
+            debugsetup.BackColor = SystemColors.Window;
             debugsetup.Location = new Point(449, 405);
             debugsetup.Name = "debugsetup";
             debugsetup.Size = new Size(112, 34);
             debugsetup.TabIndex = 14;
             debugsetup.Text = "button3";
-            debugsetup.UseVisualStyleBackColor = true;
+            debugsetup.UseVisualStyleBackColor = false;
             debugsetup.Click += debugsetup_Click;
-            // 
-            // checkedListBox1
-            // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Items.AddRange(new object[] { "Correct", "Incorrect", "Unsure" });
-            checkedListBox1.Location = new Point(252, 442);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(180, 88);
-            checkedListBox1.TabIndex = 15;
-            checkedListBox1.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
             // 
             // name
             // 
+            name.BackColor = SystemColors.Window;
             name.Location = new Point(252, 405);
             name.Name = "name";
             name.ReadOnly = true;
@@ -227,24 +219,35 @@
             // 
             // SaveDeck
             // 
+            SaveDeck.BackColor = SystemColors.Window;
             SaveDeck.Location = new Point(876, 84);
             SaveDeck.Name = "SaveDeck";
             SaveDeck.Size = new Size(112, 34);
             SaveDeck.TabIndex = 17;
             SaveDeck.Text = "Save Deck";
-            SaveDeck.UseVisualStyleBackColor = true;
+            SaveDeck.UseVisualStyleBackColor = false;
             SaveDeck.Click += SaveDeck_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.BackColor = SystemColors.Window;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Correct", "Incorrect", "Unsure" });
+            comboBox1.Location = new Point(252, 442);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(182, 33);
+            comboBox1.TabIndex = 18;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1036, 568);
+            BackColor = SystemColors.InactiveCaption;
+            ClientSize = new Size(1041, 568);
+            Controls.Add(comboBox1);
             Controls.Add(SaveDeck);
             Controls.Add(name);
-            Controls.Add(checkedListBox1);
             Controls.Add(debugsetup);
             Controls.Add(LogBox);
             Controls.Add(textBox4);
@@ -284,8 +287,8 @@
         private TextBox textBox4;
         private TextBox LogBox;
         private Button debugsetup;
-        private CheckedListBox checkedListBox1;
         private TextBox name;
         private Button SaveDeck;
+        private ComboBox comboBox1;
     }
 }

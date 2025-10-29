@@ -13,6 +13,7 @@ namespace FlashCards
         public string Frontside {  get; set; }
         public string Backside { get; set; }
 
+        
         public enum currentStatus 
         {
             False = 0,
